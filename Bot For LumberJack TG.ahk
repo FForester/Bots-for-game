@@ -1,15 +1,8 @@
-﻿left()
+SendKey(key)
 {
-    SendEvent, {vk25}
-    Sleep, 5
-    SendEvent, {vk25}
-}
-
-right()
-{
-    SendEvent, {vk27}
-    Sleep, 5
-    SendEvent, {vk27}
+SendEvent, % "{" key "}"
+Sleep, 5
+SendEvent, % "{" key "}"
 }
 
 !1::
@@ -22,8 +15,8 @@ While(true)
     {
         PixelGetColor, var, 618, pres
         arr.push(var == 0x4FAD7E ? 1 : 0)
-        pres := pres - 75
+        pres -= 75
     }
     for k, v in arr 
-        v ? right() : left()
+        v ? SendKey("vk27") : SendKey("vk25")
 }
